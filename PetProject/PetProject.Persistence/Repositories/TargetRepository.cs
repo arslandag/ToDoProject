@@ -21,22 +21,43 @@ public class TargetRepository : ITargetRepository
         return target.Id;
     }
 
-    public async Task<IReadOnlyList<Target>> Get()
+    public async Task<IReadOnlyList<Target>> Get(string status)
     {
-        var targets = await _context.Targets
-            .AsNoTracking()
-            .ToListAsync();
+        try
+        {
+            if (status == "all")
+            {
+                var targets = await _context.Targets
+                    .AsNoTracking()
+                    .ToListAsync();
 
-        return targets;
+                return targets;
+            }
+            else
+            {
+                var targets = await _context.Targets
+                    .Where(t => t.Status == bool.Parse(status))
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                return targets;
+            }
+        } 
+        catch 
+        {
+            throw new ArgumentException("Nothing found");
+        }
     }
 
-    public async Task<Guid> Update(Guid id, string name, string description)
+    public async Task<Guid> Update(Guid id, string name, string description, bool status, string priorty)
     {
         await _context.Targets
             .Where(t => t.Id == id)
             .ExecuteUpdateAsync(s => s
             .SetProperty(t => t.Name, name)
-            .SetProperty(t => t.Description, description));
+            .SetProperty(t => t.Description, description)
+            .SetProperty(t => t.Status, status)
+            .SetProperty(t => t.Priority, priorty));
 
         return id;
     }

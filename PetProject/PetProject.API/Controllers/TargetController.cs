@@ -17,11 +17,11 @@ namespace PetProject.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<TargetResponse>>> GetTarget()
+        public async Task<ActionResult<IReadOnlyList<TargetResponse>>> GetTarget(string status = "all")
         {
-            var target = await _targetsService.GetAllTarget();
+            var target = await _targetsService.GetAllTarget(status);
 
-            var responce = target.Select(t => new TargetResponse(t.Id, t.Name, t.Description));
+            var responce = target.Select(t => new TargetResponse(t.Id, t.Name, t.Description, t.Status, t.Priority));
 
             return Ok(responce);
         }
@@ -32,7 +32,9 @@ namespace PetProject.Controllers
             var target = Target.Create(
                 Guid.NewGuid(),
                 request.Name,
-                request.Description
+                request.Description,
+                request.Status,
+                request.Priority
                 );
 
             await _targetsService.CreateTargaet(target);
@@ -51,7 +53,7 @@ namespace PetProject.Controllers
         [HttpPut("{id:guid}")]
         public async Task<ActionResult<Guid>> UpdateTargets(Guid id, TargetRequest request)
         {
-            var target = await _targetsService.UpdateTarget(id, request.Name, request.Description);
+            var target = await _targetsService.UpdateTarget(id, request.Name, request.Description, request.Status, request.Priority);
 
             return Ok(target);
         }

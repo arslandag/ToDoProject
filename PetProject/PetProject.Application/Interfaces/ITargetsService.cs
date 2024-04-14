@@ -6,7 +6,7 @@ namespace PetProject.Application.Interfaces
     {
         Task<Guid> CreateTargaet(Target target);
         Task<Guid> DeleteTarget(Guid id);
-        Task<IReadOnlyList<Target>> GetAllTarget();
-        Task<Guid> UpdateTarget(Guid id, string name, string description);
+        Task<IReadOnlyList<Target>> GetAllTarget(string status);
+        Task<Guid> UpdateTarget(Guid id, string name, string description, bool status, string priority);
     }
 }

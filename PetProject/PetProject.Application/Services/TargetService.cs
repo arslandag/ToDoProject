@@ -17,18 +17,20 @@ public class TargetsService : ITargetsService
         return await _targetRepository.Create(target);
     }
 
-    public async Task<IReadOnlyList<Target>> GetAllTarget()
+    public async Task<IReadOnlyList<Target>> GetAllTarget(string status)
     {
-        return await _targetRepository.Get();
+        return await _targetRepository.Get(status);
     }
 
     public async Task<Guid> UpdateTarget(
         Guid id,
         string name,
-        string description
+        string description,
+        bool status,
+        string priority
         )
     {
-        return await _targetRepository.Update(id, name, description);
+        return await _targetRepository.Update(id, name, description, status, priority);
     }
 
     public async Task<Guid> DeleteTarget(Guid id)

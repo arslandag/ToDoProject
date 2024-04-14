@@ -16,5 +16,11 @@ public class TargetConfiguration : IEntityTypeConfiguration<Target>
         builder.Property(t => t.Description)
             .IsRequired()
             .HasMaxLength(Target.MAX_LENGTH_DESCRIPTION);
+
+        builder.Property(t => t.Status)
+            .IsRequired();
+
+        builder.Property(T => T.Priority)
+            .IsRequired();
     }
 }

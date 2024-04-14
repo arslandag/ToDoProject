@@ -2,6 +2,8 @@
 {
     public record TargetRequest(
         string Name,
-        string Description
+        string Description,
+        bool Status,
+        string Priority
         );
 }

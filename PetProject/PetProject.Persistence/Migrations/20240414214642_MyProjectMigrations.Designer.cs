@@ -12,8 +12,8 @@ using PetProject.Persistence;
 namespace PetProject.Persistence.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240414190309_initial")]
-    partial class initial
+    [Migration("20240414214642_MyProjectMigrations")]
+    partial class MyProjectMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,13 @@ namespace PetProject.Persistence.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("Priority")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 

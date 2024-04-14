@@ -3,6 +3,8 @@
     public record TargetResponse(
         Guid Id,
         string Name,
-        string Description
+        string Description,
+        bool Status,
+        string Priority
         );
 }
