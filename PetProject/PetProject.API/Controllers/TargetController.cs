@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PetProject.API.Contracts;
 using PetProject.Application.Interfaces;
-using PetProject.Contracts;
 using PetProject.Core.Models;
 
 namespace PetProject.Controllers
@@ -17,7 +17,7 @@ namespace PetProject.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<TargetResponse>>> GetTarget()
+        public async Task<ActionResult<IReadOnlyList<TargetResponse>>> GetTarget()
         {
             var target = await _targetsService.GetAllTarget();
 

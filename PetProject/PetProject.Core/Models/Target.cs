@@ -2,7 +2,8 @@
 
 public class Target
 {
-
+    public const int  MAX_LENGTH_NAME = 50;
+    public const int  MAX_LENGTH_DESCRIPTION = 50;
     private Target(Guid id, string name, string description)
     {
         Id = id;
@@ -15,9 +16,9 @@ public class Target
 
     public static Target Create(Guid id, string name, string description)
     {
-        if (string.IsNullOrEmpty(name)) throw new ArgumentException("Name cannot be null!");
+        if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Name cannot be null!");
 
-        if (string.IsNullOrEmpty(description)) throw new ArgumentException("Description cannot be null!");
+        if (string.IsNullOrWhiteSpace(description)) throw new ArgumentException("Description cannot be null!");
 
         return new Target(id, name, description);
     }

@@ -17,7 +17,7 @@ public class TargetsService : ITargetsService
         return await _targetRepository.Create(target);
     }
 
-    public async Task<List<Target>> GetAllTarget()
+    public async Task<IReadOnlyList<Target>> GetAllTarget()
     {
         return await _targetRepository.Get();
     }

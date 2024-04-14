@@ -10,9 +10,11 @@ public class TargetConfiguration : IEntityTypeConfiguration<Target>
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.Name)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(Target.MAX_LENGTH_NAME);
 
         builder.Property(t => t.Description)
-            .IsRequired();
+            .IsRequired()
+            .HasMaxLength(Target.MAX_LENGTH_DESCRIPTION);
     }
 }

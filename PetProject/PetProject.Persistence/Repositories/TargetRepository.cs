@@ -15,20 +15,19 @@ public class TargetRepository : ITargetRepository
 
     public async Task<Guid> Create(Target target)
     {
-
         await _context.Targets.AddAsync(target);
         await _context.SaveChangesAsync();
 
         return target.Id;
     }
 
-    public async Task<List<Target>> Get()
+    public async Task<IReadOnlyList<Target>> Get()
     {
-        var target = await _context.Targets
+        var targets = await _context.Targets
             .AsNoTracking()
             .ToListAsync();
 
-        return target;
+        return targets;
     }
 
     public async Task<Guid> Update(Guid id, string name, string description)

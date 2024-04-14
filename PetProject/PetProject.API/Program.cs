@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using PetProject.Application.Interfaces;
 using PetProject.Application.Services;
-using PetProject.Persistence;
 using PetProject.Persistence.Repositories;
+using PetProject.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
